@@ -13,8 +13,8 @@ private:
               total_time_lower_limit = 5000, 
               red_time_lower_limit = 1000;
 
-    std::string red_light_filename = "",
-                green_light_filename = "";
+    std::string red_light_filename = "Images//light_red.png",
+                green_light_filename = "Images//light_green.png";
     sf::Sprite sprite;
     sf::Texture texture;
 
