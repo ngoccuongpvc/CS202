@@ -14,7 +14,7 @@ protected:
 	sf::Texture texture;
 	sf::Vector2f velocity;
 	int x;
-
+	int num_SoundVehicle;
 	bool have_light = 0;
 	TrafficLight light;
 
@@ -24,9 +24,13 @@ public:
 	virtual void draw();
 	virtual void update() = 0;
 	virtual void playStreetSound(People& p) = 0;
+	virtual sf::RectangleShape getRec();
 	bool checkCollision(People& p);
 };
 
+sf::RectangleShape LaneInterface::getRec() {
+	return this->rec;
+}
 LaneInterface::LaneInterface(int x) {
 	this->x = x;
 }

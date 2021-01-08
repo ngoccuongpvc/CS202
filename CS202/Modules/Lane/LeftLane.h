@@ -16,6 +16,7 @@ LeftLane::LeftLane(int x) : LaneInterface(x) {
 	rec.setPosition(sf::Vector2f(0.f, x));
 	rec.setSize(sf::Vector2f(1280, 72.f));
 	rec.setTexture(&texture);
+	num_SoundVehicle = 0;
 }
 
 void LeftLane::initialize()
@@ -64,9 +65,9 @@ void LeftLane::playStreetSound(People& p) {
 
 	for (auto& vehicle : vehicles) {
 		float tmp = pSprite->getPosition().x - (vehicle->getSprite()->getPosition().x + vehicle->getSprite()->getGlobalBounds().width);
-
-		if (tmp < 15 && tmp > 0 && (pSprite->getGlobalBounds().intersects(this->rec.getGlobalBounds()))) {
-			vehicle->getSound()->play();
+		if (tmp < 1 && tmp > 0 && (pSprite->getGlobalBounds().intersects(this->rec.getGlobalBounds()))) {
+				vehicle->getSound()->play();
+				break;
 			//std::cout << "Gap vat can roi ciu ciu ciu " << std::endl;
 		}
 	}
