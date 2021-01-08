@@ -22,7 +22,7 @@ NewGameButton::NewGameButton(float x, float y) {
 
 void NewGameButton::onClick()
 {
-	GameController processor;
+	GameController processor(0);
 	processor.start();
 }
 

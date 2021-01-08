@@ -8,48 +8,40 @@
 #include "../Modules/Lane/RightLane.h"
 #include "../Modules/Lane/Pavement.h"
 
-
 class GameController
 {
 private:
 	People player;
 	std::vector<LaneInterface*> lanes;
-
+	int level = 0;
 public:
-	GameController();
+	GameController(int level);
 	void start();
-	int checkPlayerLane();
 };
 
-int GameController::checkPlayerLane() {
-	for (int i = 0; i < lanes.size(); i++) {
-		if (player.getSprite()->getGlobalBounds().intersects(lanes[i]->getRec().getGlobalBounds())) {
-			return i;
-		}
-	}
-}
-
-GameController::GameController()
+GameController::GameController(int level)
 {
+	this->level = level;
 	lanes.push_back(new Pavement(0));
-	lanes.back()->initialize();
-
 	for (int i = 1; i < 9; i += 2) {
 		lanes.push_back(new LeftLane(i * 72));
-		lanes.back()->initialize();
-
 		lanes.push_back(new RightLane((i + 1) * 72));
-		lanes.back()->initialize();
 	}
-
 	lanes.push_back(new Pavement(9 * 72));
-	lanes.back()->initialize();
 }
 
 void GameController::start() {
 	sf::RenderWindow* window = Factory::getRenderWindow();
 
+	//PauseMenu pauseMenu;
 	window->clear();
+
+	for (int i = 0; i < lanes.size(); i++)
+	{
+		lanes[i]->resetVehicles();
+		lanes[i]->initialize(level);
+	}
+	player.startPosition();
 
 	while (window->isOpen()) {
 		sf::Event event;
@@ -73,6 +65,10 @@ void GameController::start() {
 					break;
 				case sf::Keyboard::D:
 					player.moveRight();
+					break;
+				case sf::Keyboard::Escape:
+					//pauseMenu.showMenu();
+					return;
 					break;
 				default:
 					break;
@@ -103,17 +99,19 @@ void GameController::start() {
 		}
 		window->clear();
 		player.move();
+
 		for (auto& lane : lanes) {
 			lane->draw();
+			lane->update(level);
 		}
 		player.draw();
-		int pos_lane = checkPlayerLane();
-		//std::cout << pos_lane << std::endl;
-		if (pos_lane > 0 && pos_lane < 9) {
-			lanes[pos_lane]->playStreetSound(player);
-		}
 		sf::sleep(sf::microseconds(1000));
 		window->display();
+		if (player.getSprite()->getPosition().y == 0)
+		{
+			level++;
+			start(); //nextlevel
+			return;
+		}
 	}
-
 }
