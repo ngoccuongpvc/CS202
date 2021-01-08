@@ -109,7 +109,7 @@ void GameController::start() {
 		player.draw();
 		int pos_lane = checkPlayerLane();
 		//std::cout << pos_lane << std::endl;
-		if (pos_lane != 0 && pos_lane != 9) {
+		if (pos_lane > 0 && pos_lane < 9) {
 			lanes[pos_lane]->playStreetSound(player);
 		}
 		sf::sleep(sf::microseconds(1000));
