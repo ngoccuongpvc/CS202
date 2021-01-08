@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
-//#include <sfml\Graphics.hpp>
+#include <sfml\Graphics.hpp>
 #include "Controllers/MainMenu.h"
 
 #include "Modules/Vehicle/CarFactory.h"
