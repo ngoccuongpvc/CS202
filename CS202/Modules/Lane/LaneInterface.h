@@ -14,7 +14,7 @@ protected:
 	sf::Texture texture;
 	sf::Vector2f velocity;
 	int x;
-
+	int num_SoundVehicle;
 	bool have_light = 0;
 	TrafficLight light;
 
