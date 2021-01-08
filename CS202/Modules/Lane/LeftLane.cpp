@@ -1,9 +1,8 @@
 #include "LeftLane.h"
 
-void LeftLane::initialize()
+void LeftLane::initialize(int level)
 {
-	srand(time(NULL));
-	float speed = static_cast<float>(rand()) / RAND_MAX;
+	float speed = randomSpeed(level);
 	velocity = sf::Vector2f(speed, 0);
 
 	light.initialize(x, true);
@@ -15,20 +14,20 @@ void LeftLane::initialize()
 		vehicle = CarFactory::getRandom();
 		vehicle->getSprite()->setScale(-1.f, 1.f);
 		vehicle->setVelocity(velocity);
-		lastPos += (vehicles.empty() ? 0 : vehicles.back()->getSprite()->getGlobalBounds().width) + static_cast<float>(rand() % 500);
+		lastPos += (vehicles.empty() ? 0 : vehicles.back()->getSprite()->getGlobalBounds().width) + randomDist(level);
 		vehicle->getSprite()->setPosition(sf::Vector2f(lastPos, x));
 		vehicles.push_back(vehicle);
 	}
 }
 
-void LeftLane::update()
+void LeftLane::update(int level)
 {
 	if (!vehicles.empty()) {
 		float firstPos = vehicles.front()->getSprite()->getPosition().x;
 		if (firstPos > 0) {
 			vehicles.push_front(CarFactory::getRandom());
 			vehicles.front()->getSprite()->setScale(-1.f, 1.f);
-			float pos = firstPos - vehicles.front()->getSprite()->getGlobalBounds().width - static_cast<float>(rand() % 500);
+			float pos = firstPos - vehicles.front()->getSprite()->getGlobalBounds().width - randomDist(level);
 			vehicles.front()->getSprite()->setPosition(pos, x);
 			vehicles.front()->setVelocity(velocity);
 		}

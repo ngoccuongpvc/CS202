@@ -9,10 +9,9 @@ RightLane::RightLane(int x) : LaneInterface(x) {
 	num_SoundVehicle = 0;
 }
 
-void RightLane::initialize()
+void RightLane::initialize(int level)
 {
-	srand(time(NULL));
-	float speed = static_cast<float>(rand()) / RAND_MAX;
+	float speed = randomSpeed(level);
 	velocity = sf::Vector2f(-speed, 0);
 
 	light.initialize(x, false);
@@ -23,20 +22,20 @@ void RightLane::initialize()
 	while (lastPos < 1280) {
 		vehicle = CarFactory::getRandom();
 		vehicle->setVelocity(velocity);
-		lastPos += (vehicles.empty() ? 0 : vehicles.back()->getSprite()->getGlobalBounds().width) + static_cast<float>(rand() % 500);
+		lastPos += (vehicles.empty() ? 0 : vehicles.back()->getSprite()->getGlobalBounds().width) + randomDist(level);
 		vehicle->getSprite()->setPosition(sf::Vector2f(lastPos, x));
 		vehicles.push_back(vehicle);
 	}
 }
 
-void RightLane::update()
+void RightLane::update(int level)
 {
 	if (!vehicles.empty()) {
 		float firstPos = vehicles.front()->getSprite()->getPosition().x;
 		if (firstPos < 1280) {
 			vehicles.push_front(CarFactory::getRandom());
 
-			float pos = firstPos + vehicles.front()->getSprite()->getGlobalBounds().width + static_cast<float>(rand() % 500);
+			float pos = firstPos + vehicles.front()->getSprite()->getGlobalBounds().width + randomDist(level);
 			vehicles.front()->getSprite()->setPosition(pos, x);
 			vehicles.front()->setVelocity(velocity);
 		}

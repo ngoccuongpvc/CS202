@@ -15,6 +15,7 @@ public:
 	People();
 	//People(std::string filename);
 	//void setSource(std::string filename); //Set the character image
+	void startPosition();
 	void draw();
 	void move();
 	void moveLeft();
@@ -29,6 +30,12 @@ People::People() {
 	player.setTexture(playerTexture);
 	player.setPosition(640 - player.getGlobalBounds().width / 2, 720 - player.getGlobalBounds().height);
 }
+
+void People::startPosition()
+{
+	player.setPosition(640 - player.getGlobalBounds().width / 2, 720 - player.getGlobalBounds().height);
+}
+
 void People::draw() {
 	sf::RenderWindow* window = Factory::getRenderWindow();
 	window->draw(player);
