@@ -23,7 +23,7 @@ public:
     TrafficLight();
     void initialize(int x_from_lane, bool is_left);
     void startClock();
-    void updateLight();
+    void updateLight(bool from_init = false);
     void draw();
     bool isRed();
     static sf::Texture* redLight;
@@ -47,7 +47,7 @@ void TrafficLight::initialize(int x_from_lane, bool is_left)
     is_red = false;
 
     startClock();
-    updateLight();
+    updateLight(true);
     //int width = sprite.getTexture()->getSize().x * sprite.getScale().x;
     int width = sprite.getGlobalBounds().width;
     sprite.setPosition((is_left)? (1280 - width) : (0),  x_from_lane);
@@ -58,10 +58,12 @@ void TrafficLight::startClock()
     clk.restart();
 }
 
-void TrafficLight::updateLight()
+void TrafficLight::updateLight(bool from_init = false)
 {
     int cur_time = clk.getElapsedTime().asMilliseconds();
     if (cur_time > total_time) clk.restart();
+    if (from_init) 
+        cur_time += red_time -500 + random() % (total_time - red_time);
 
     cur_time %= total_time;
     if (is_red) 
