@@ -62,10 +62,15 @@ void LeftLane::playStreetSound(People& p) {
 	sf::Sprite* pSprite = p.getSprite();
 
 	for (auto& vehicle : vehicles) {
-		float tmp = pSprite->getPosition().x - (vehicle->getSprite()->getPosition().x + vehicle->getSprite()->getGlobalBounds().width);
-
+		//float tmp = pSprite->getPosition().x - (vehicle->getSprite()->getPosition().x + vehicle->getSprite()->getGlobalBounds().width);
+		float tmp = vehicle->getSprite()->getPosition().x - (pSprite->getPosition().x + pSprite->getGlobalBounds().width);
 		if (tmp < 15 && tmp > 0 && (pSprite->getGlobalBounds().intersects(this->rec.getGlobalBounds()))) {
+			/*
+			vehicle->getSoundBuffer()->loadFromFile(vehicle->getSoundFile());
+			vehicle->getSound()->setBuffer(*vehicle->getSoundBuffer());
+			*/
 			vehicle->getSound()->play();
+
 			//std::cout << "Gap vat can roi ciu ciu ciu " << std::endl;
 		}
 	}
