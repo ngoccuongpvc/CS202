@@ -18,7 +18,16 @@ private:
 public:
 	GameController();
 	void start();
+	int checkPlayerLane();
 };
+
+int GameController::checkPlayerLane() {
+	for (int i = 0; i < lanes.size(); i++) {
+		if (player.getSprite()->getGlobalBounds().intersects(lanes[i]->getRec().getGlobalBounds())) {
+			return i;
+		}
+	}
+}
 
 GameController::GameController()
 {
@@ -94,11 +103,15 @@ void GameController::start() {
 		}
 		window->clear();
 		player.move();
-
 		for (auto& lane : lanes) {
 			lane->draw();
 		}
 		player.draw();
+		int pos_lane = checkPlayerLane();
+		//std::cout << pos_lane << std::endl;
+		if (pos_lane != 0 && pos_lane != 9) {
+			lanes[pos_lane]->playStreetSound(player);
+		}
 		sf::sleep(sf::microseconds(1000));
 		window->display();
 	}

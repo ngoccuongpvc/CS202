@@ -9,7 +9,7 @@ public:
 
 Tree::Tree() {
 	this->filename = "Images\\tree.png";
-	texture->loadFromFile(filename);
+	texture = TextureLoader::loadTexture(filename);
 	this->sprite = new sf::Sprite();
 	this->sprite->setTexture(*texture);
 }

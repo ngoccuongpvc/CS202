@@ -12,7 +12,9 @@ public:
 Car::Car()
 {
 	this->filename = "Images\\car.png";
-	texture->loadFromFile(filename);
+	this->soundfile = "Audio\\car_sound.wav";
+
+	texture = TextureLoader::loadTexture(filename);
 	this->sprite = new sf::Sprite();
 	this->sprite->setTexture(*texture);
 }
