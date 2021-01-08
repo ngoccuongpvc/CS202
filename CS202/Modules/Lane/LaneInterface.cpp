@@ -10,13 +10,17 @@ LaneInterface::LaneInterface(int x) {
 void LaneInterface::draw() {
 	sf::RenderWindow* window = Factory::getRenderWindow();
 
-	this->update();
 	window->draw(rec);
 	for (auto& vehicle : vehicles) {
 		vehicle->move();
 		window->draw(*vehicle->getSprite());
 	}
 	light.draw();
+}
+
+void LaneInterface::resetVehicles()
+{
+	vehicles.clear();
 }
 
 bool LaneInterface::checkCollision(People& p)

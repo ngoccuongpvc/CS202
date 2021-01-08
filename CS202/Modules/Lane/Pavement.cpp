@@ -8,7 +8,7 @@ Pavement::Pavement(int x) : LaneInterface(x) {
 	rec.setTexture(&texture);
 }
 
-void Pavement::initialize() {
+void Pavement::initialize(int level) {
 	srand(time(NULL));
 	float speed = 0;
 	velocity = sf::Vector2f(speed, 0);
@@ -26,4 +26,4 @@ void Pavement::initialize() {
 
 void Pavement::playStreetSound(People& p) {}
 
-void Pavement::update() {}
+void Pavement::update(int level) {}
