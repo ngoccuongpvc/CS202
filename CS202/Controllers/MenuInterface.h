@@ -5,6 +5,7 @@
 #include "../Modules/Button/ButtonInterface.h"
 #include "../Modules/Button/NewGameButton.h"
 #include "../Modules/Button/LoadGameButton.h"
+#include "../Modules/Button/ExitGameButton.h"
 
 
 class MenuInterface
