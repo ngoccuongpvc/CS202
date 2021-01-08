@@ -1,3 +1,7 @@
+#ifndef _CollisionAnimation_H_
+#define _CollisionAnimation_H_
+
+
 #include <vector>
 #include <SFML/Graphics.hpp>
 #include "People.h"
@@ -18,3 +22,5 @@ public:
 
     bool is_done;
 };
+
+#endif

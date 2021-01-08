@@ -1,3 +1,6 @@
+#ifndef _TrafficLight_H_
+#define _TrafficLight_H_
+
 #include <vector>
 #include <SFML/System/Time.hpp>
 #include <SFML/System/Clock.hpp>
@@ -25,3 +28,5 @@ public:
     void updateLight();
     void draw();
 };
+
+#endif
