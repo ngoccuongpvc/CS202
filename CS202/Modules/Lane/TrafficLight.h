@@ -2,6 +2,7 @@
 #include <SFML/System/Time.hpp>
 #include <SFML/System/Clock.hpp>
 #include <SFML/Graphics.hpp>
+#include "../../Utility/RandomMachine.h"
 
 class TrafficLight
 {
@@ -41,9 +42,8 @@ TrafficLight::TrafficLight():
 
 void TrafficLight::initialize(int x_from_lane, bool is_left)
 {
-    srand(time(NULL));
-    total_time = total_time_lower_limit + rand() % total_time_rand_limit;
-    red_time = red_time_lower_limit + rand() % (total_time / 2);
+    total_time = total_time_lower_limit + random() % total_time_rand_limit;
+    red_time = red_time_lower_limit + random() % (total_time / 2);
     is_red = false;
 
     startClock();
