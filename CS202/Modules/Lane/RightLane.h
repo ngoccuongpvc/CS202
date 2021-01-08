@@ -7,12 +7,13 @@ public:
 	RightLane(int x);
 	void initialize();
 	void update();
+	void playStreetSound(People& p);
 };
 
 RightLane::RightLane(int x) : LaneInterface(x) {
 	texture.loadFromFile("Images//road.jpg");
 	texture.setRepeated(true);
-	rec.setPosition(sf::Vector2f(0.f, x ));
+	rec.setPosition(sf::Vector2f(0.f, x));
 	rec.setSize(sf::Vector2f(1280, 72.f));
 	rec.setTexture(&texture);
 }
@@ -54,4 +55,17 @@ void RightLane::update()
 	}
 
 	light.updateLight();
+}
+
+void RightLane::playStreetSound(People& p) {
+	sf::Sprite* pSprite = p.getSprite();
+
+	for (auto& vehicle : vehicles) {
+		float tmp = vehicle->getSprite()->getPosition().x - (pSprite->getPosition().x + pSprite->getGlobalBounds().width);
+
+		if (tmp < 30 && tmp > 0 && (pSprite->getGlobalBounds().intersects(this->rec.getGlobalBounds()))) {
+			vehicle->getSound()->play();
+			//std::cout << "Gap vat can roi ciu ciu ciu " << std::endl;
+		}
+	}
 }

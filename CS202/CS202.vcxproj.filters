@@ -101,5 +101,8 @@
     <ClInclude Include="Modules\Button\LoadGameButton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Modules\CollisionAnimation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -97,6 +97,7 @@ void GameController::start() {
 
 		for (auto& lane : lanes) {
 			lane->draw();
+			lane->playStreetSound(player);
 		}
 		player.draw();
 		sf::sleep(sf::microseconds(1000));
