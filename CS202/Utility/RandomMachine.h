@@ -23,7 +23,7 @@ float randomSpeed(int level)
 
 float randomDist(int level)
 {
-	int mod = std::max(500 - level * 40, 100);
+	int mod = std::max(500 - level * 20, 100);
 	return static_cast<float>(random() % mod);
 }
 

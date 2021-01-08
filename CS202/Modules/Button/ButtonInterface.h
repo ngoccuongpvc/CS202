@@ -12,8 +12,18 @@ protected:
 public:
 	void draw();
 	virtual void onClick() {}
+	virtual void onClickPause(bool& check) {}
 	virtual bool isClicked(sf::Vector2i point) = 0;
+	void changeColor(bool touch);
 };
+
+void ButtonInterface::changeColor(bool touch)
+{
+	if (touch)
+		text.setFillColor(sf::Color::Red);
+	else
+		text.setFillColor(sf::Color::White);
+}
 
 void ButtonInterface::draw()
 {

@@ -58,7 +58,7 @@ void TrafficLight::startClock()
     clk.restart();
 }
 
-void TrafficLight::updateLight(bool from_init = false)
+void TrafficLight::updateLight(bool from_init)
 {
     int cur_time = clk.getElapsedTime().asMilliseconds();
     if (cur_time > total_time) clk.restart();

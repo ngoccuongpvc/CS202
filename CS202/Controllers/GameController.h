@@ -8,6 +8,8 @@
 #include "../Modules/Lane/RightLane.h"
 #include "../Modules/Lane/Pavement.h"
 #include  "../Modules/CollisionAnimation.h"
+#include "PauseMenu.h"
+#include <string>
 
 class GameController
 {
@@ -15,6 +17,8 @@ private:
 	People player;
 	CollisionAnimation colision;
 	std::vector<LaneInterface*> lanes;
+	sf::RectangleShape rect;
+	sf::Text text;
 	int level = 0;
 public:
 	GameController(int level);
@@ -23,6 +27,17 @@ public:
 
 GameController::GameController(int level)
 {
+	rect.setFillColor(sf::Color::Black);
+	rect.setOutlineColor(sf::Color::Red);
+	rect.setOutlineThickness(3);
+	rect.setPosition(sf::Vector2f(10, 15));
+	rect.setSize(sf::Vector2f(65, 30));
+
+	text.setFont(*Factory::getFont());
+	text.setCharacterSize(15);
+	text.setFillColor(sf::Color::Red);
+	text.setPosition(sf::Vector2f(15, 20));
+
 	this->level = level;
 	lanes.push_back(new Pavement(0));
 	for (int i = 1; i < 9; i += 2) {
@@ -35,7 +50,8 @@ GameController::GameController(int level)
 void GameController::start() {
 	sf::RenderWindow* window = Factory::getRenderWindow();
 
-	//PauseMenu pauseMenu;
+	PauseMenu pauseMenu(level);
+	text.setString("Level: " + std::to_string(level + 1));
 	window->clear();
 
 	for (int i = 0; i < lanes.size(); i++)
@@ -69,8 +85,8 @@ void GameController::start() {
 					player.moveRight();
 					break;
 				case sf::Keyboard::Escape:
-					//pauseMenu.showMenu();
-					return;
+					if (pauseMenu.showMenu())
+						return;
 					break;
 				default:
 					break;
@@ -101,11 +117,13 @@ void GameController::start() {
 		}
 		window->clear();
 		player.move();
-
+		
 		for (auto& lane : lanes) {
 			lane->update(level);
 			lane->draw();
 		}
+		window->draw(rect);
+		window->draw(text);
 		for (int i = 1; i < 9; ++i) {
 			lanes[i]->playStreetSound(player);
 			if (lanes[i]->checkCollision(player)) {
