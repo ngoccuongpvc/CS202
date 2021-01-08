@@ -24,7 +24,13 @@ public:
     void startClock();
     void updateLight();
     void draw();
+    bool isRed();
+    static sf::Texture* redLight;
+    static sf::Texture* greenLight;
 };
+
+sf::Texture* TrafficLight::redLight = nullptr;
+sf::Texture* TrafficLight::greenLight = nullptr;
 
 TrafficLight::TrafficLight(): 
     is_red(false), red_time(0), total_time(0) 
@@ -44,7 +50,7 @@ void TrafficLight::initialize(int x_from_lane, bool is_left)
     updateLight();
     //int width = sprite.getTexture()->getSize().x * sprite.getScale().x;
     int width = sprite.getGlobalBounds().width;
-    sprite.setPosition((is_left)? (1280 - width) : (0 + width),  x_from_lane);
+    sprite.setPosition((is_left)? (1280 - width) : (0),  x_from_lane);
 }
 
 void TrafficLight::startClock()
@@ -64,8 +70,11 @@ void TrafficLight::updateLight()
         {
             is_red = false;
             //change image to green
-            texture.loadFromFile(green_light_filename);
-	        sprite.setTexture(texture);  
+            if (TrafficLight::redLight == nullptr) {
+                TrafficLight::redLight = new sf::Texture();
+                TrafficLight::redLight->loadFromFile(green_light_filename);
+            }
+            sprite.setTexture(*TrafficLight::redLight);
         }
     }
     else 
@@ -73,8 +82,11 @@ void TrafficLight::updateLight()
         {
             is_red = true;
             //change image to red
-            texture.loadFromFile(red_light_filename);
-	        sprite.setTexture(texture);  
+            if (TrafficLight::greenLight == nullptr) {
+                TrafficLight::greenLight = new sf::Texture();
+                TrafficLight::greenLight->loadFromFile(red_light_filename);
+            }
+            sprite.setTexture(*TrafficLight::greenLight);
         }
 }
 
@@ -82,4 +94,9 @@ void TrafficLight::draw()
 {
     sf::RenderWindow *window = Factory::getRenderWindow();
     window->draw(sprite);
+}
+
+bool TrafficLight::isRed()
+{
+    return this->is_red;
 }

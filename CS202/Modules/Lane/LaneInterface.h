@@ -41,7 +41,8 @@ void LaneInterface::draw() {
 	this->update();
 	window->draw(rec);
 	for (auto& vehicle : vehicles) {
-		vehicle->move();
+		if (!light.isRed())
+			vehicle->move();
 		window->draw(*vehicle->getSprite());
 	}
 	light.draw();
