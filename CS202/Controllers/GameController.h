@@ -7,11 +7,13 @@
 #include "../Modules/Lane/LeftLane.h"
 #include "../Modules/Lane/RightLane.h"
 #include "../Modules/Lane/Pavement.h"
+#include  "../Modules/CollisionAnimation.h"
 
 class GameController
 {
 private:
 	People player;
+	CollisionAnimation colision;
 	std::vector<LaneInterface*> lanes;
 	int level = 0;
 public:
@@ -102,9 +104,16 @@ void GameController::start() {
 
 		for (auto& lane : lanes) {
 			lane->update(level);
-			lane->playStreetSound(player);
 			lane->draw();
 		}
+		for (int i = 1; i < 9; ++i) {
+			lanes[i]->playStreetSound(player);
+			if (lanes[i]->checkCollision(player)) {
+				colision.draw(player.getSprite()->getPosition().x, player.getSprite()->getPosition().y);
+				return;
+			}
+		}
+	
 		player.draw();
 		sf::sleep(sf::microseconds(1000));
 		window->display();

@@ -12,21 +12,21 @@ private:
     int frame_cnt;
     std::vector<sf::Texture*> texture;
 public:
-    CollisionAnimation(People &p);
+    CollisionAnimation();
     ~CollisionAnimation();
-    void draw();
+    void draw(float x, float y);
     void update();
     void restart();
 
     bool is_done;
 };
 
-CollisionAnimation::CollisionAnimation(People &p)
+CollisionAnimation::CollisionAnimation()
 {
     restart();
     
     std::string filename = "Images//Frame0.png";
-    sf::Sprite* player = p.getSprite();
+ 
     for (int i = 0; i < vector_size; i++)
     {
         filename[filename.size() - 5] = '0' + i + 1;
@@ -35,7 +35,7 @@ CollisionAnimation::CollisionAnimation(People &p)
 
         frames.push_back(new sf::Sprite);
         frames[i]->setTexture(*texture[i]);
-        frames[i]->setPosition(player->getPosition());
+        //frames[i]->setPosition(player->getPosition());
     }
 }
 
@@ -63,11 +63,16 @@ void CollisionAnimation::update()
     }
 }
 
-void CollisionAnimation::draw()
+void CollisionAnimation::draw(float x, float y)
 {
-    if (is_done) return;
-
     sf::RenderWindow *window = Factory::getRenderWindow();
-    window->draw(*frames[frame_cnt]);
-    update();
+    
+    //window->draw(*frames[frame_cnt]);
+    for (auto& frame : frames) {
+        frame->setPosition(sf::Vector2f(x-frame->getGlobalBounds().width/2, y - frame->getGlobalBounds().height / 2));
+        window->draw(*frame);
+        window->display();
+        sf::sleep(sf::microseconds(10000));
+    }
+    //update();
 }

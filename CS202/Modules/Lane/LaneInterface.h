@@ -57,11 +57,10 @@ bool LaneInterface::checkCollision(People& p)
 	if (!rec.getGlobalBounds().intersects(player->getGlobalBounds()))
 		return false;
 	for (auto& vehicle : vehicles)
-		if (player->getGlobalBounds().intersects(
-			vehicle->getSprite()->getGlobalBounds()
-		   )
-		   )
+		if (player->getGlobalBounds().intersects(vehicle->getSprite()->getGlobalBounds()))
 		{
+			//std::cout << player->getGlobalBounds().left << " " << player->getGlobalBounds().top << " " << player->getGlobalBounds().width << " " << player->getGlobalBounds().height << std::endl;
+			//std::cout << vehicle->getSprite()->getGlobalBounds().left << " " << vehicle->getSprite()->getGlobalBounds().top << " " << vehicle->getSprite()->getGlobalBounds().width << " " << vehicle->getSprite()->getGlobalBounds().height << std::endl;
 			return true;
 		}
 	return false;

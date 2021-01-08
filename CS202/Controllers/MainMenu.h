@@ -29,6 +29,12 @@ void MainMenu::showMenu()
 
 	while (window->isOpen()) {
 		sf::Event event;
+		window->clear();
+		for (ButtonInterface* button : buttons)
+		{
+			button->draw();
+		}
+		window->display();
 		while (window->pollEvent(event)) {
 			switch (event.type)
 			{
