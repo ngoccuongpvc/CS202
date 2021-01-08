@@ -6,6 +6,7 @@ public:
 	void initialize(int level);
 	Pavement(int x);
 	void update(int level);
+	void playStreetSound(People& p);
 };
 
 Pavement::Pavement(int x) : LaneInterface(x) {
@@ -31,6 +32,6 @@ void Pavement::initialize(int level) {
 		vehicles.push_back(vehicle);
 	}
 }
-
+void Pavement::playStreetSound(People& p) {}
 void Pavement::update(int level) {
 }

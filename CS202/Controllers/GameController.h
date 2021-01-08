@@ -101,8 +101,9 @@ void GameController::start() {
 		player.move();
 
 		for (auto& lane : lanes) {
-			lane->draw();
 			lane->update(level);
+			lane->playStreetSound(player);
+			lane->draw();
 		}
 		player.draw();
 		sf::sleep(sf::microseconds(1000));

@@ -24,7 +24,7 @@ public:
 	virtual void initialize(int level) = 0;
 	virtual void draw();
 	virtual void update(int level) = 0;
-
+	virtual void playStreetSound(People& p) = 0;
 	void resetVehicles();
 	bool checkCollision(People& p);
 };

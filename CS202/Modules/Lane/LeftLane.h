@@ -7,6 +7,7 @@ public:
 	LeftLane(int x);
 	void initialize(int level);
 	void update(int level);
+	void playStreetSound(People& p);
 };
 
 LeftLane::LeftLane(int x) : LaneInterface(x) {
@@ -54,4 +55,17 @@ void LeftLane::update(int level)
 	}
 
 	light.updateLight();
+}
+
+void LeftLane::playStreetSound(People& p) {
+	sf::Sprite* pSprite = p.getSprite();
+
+	for (auto& vehicle : vehicles) {
+		float tmp = pSprite->getPosition().x - (vehicle->getSprite()->getPosition().x + vehicle->getSprite()->getGlobalBounds().width);
+		if (tmp < 1 && tmp > 0 && (pSprite->getGlobalBounds().intersects(this->rec.getGlobalBounds()))) {
+			vehicle->getSound()->play();
+			break;
+			//std::cout << "Gap vat can roi ciu ciu ciu " << std::endl;
+		}
+	}
 }
