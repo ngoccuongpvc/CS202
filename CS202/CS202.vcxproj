@@ -162,7 +162,7 @@
     <ClInclude Include="Modules\Vehicle\AudioLoader.h" />
     <ClInclude Include="Modules\Vehicle\TextureLoader.h" />
     <ClInclude Include="Modules\Button\ButtonInterface.h" />
-    <ClInclude Include="Modules\Button\ExitButton.h" />
+    <ClInclude Include="Modules\Button\ExitGameButton.h" />
     <ClInclude Include="Modules\Button\LoadGameButton.h" />
     <ClInclude Include="Modules\Button\NewGameButton.h" />
     <ClInclude Include="Modules\CollisionAnimation.h" />

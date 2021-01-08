@@ -2,6 +2,7 @@
 #include <vector>
 #include <SFML/Graphics.hpp>
 #include "../Factory.h"
+#include "People.h"
 
 class CollisionAnimation
 {
@@ -11,7 +12,7 @@ private:
     int frame_cnt;
     std::vector<sf::Texture*> texture;
 public:
-    CollisionAnimation();
+    CollisionAnimation(People &p);
     ~CollisionAnimation();
     void draw();
     void update();
@@ -20,17 +21,21 @@ public:
     bool is_done;
 };
 
-CollisionAnimation::CollisionAnimation()
+CollisionAnimation::CollisionAnimation(People &p)
 {
     restart();
     
     std::string filename = "Images//Frame0.png";
+    sf::Sprite* player = p.getSprite();
     for (int i = 0; i < vector_size; i++)
     {
         filename[filename.size() - 5] = '0' + i + 1;
+        texture.push_back(new sf::Texture);
         texture[i]->loadFromFile(filename);
+
         frames.push_back(new sf::Sprite);
         frames[i]->setTexture(*texture[i]);
+        frames[i]->setPosition(player->getPosition());
     }
 }
 

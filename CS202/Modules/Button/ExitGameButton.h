@@ -1,32 +1,31 @@
 #pragma once
 
-#include "../../Controllers/GameController.h"
 #include "ButtonInterface.h"
-class NewGameButton : public ButtonInterface
+class ExitGameButton : public ButtonInterface
 {
 public:
-	NewGameButton(float x, float y);
+	ExitGameButton(float x, float y);
 	void onClick();
 	bool isClicked(sf::Vector2i point);
 };
 
-NewGameButton::NewGameButton(float x, float y) {
+ExitGameButton::ExitGameButton(float x, float y) {
 	//rec.setSize(sf::Vector2f(width, height));
 
 	text.setFont(*Factory::getFont());
-	text.setString("Start New Game");
+	text.setString("Exit");
 	text.setCharacterSize(24);
 	text.setFillColor(sf::Color::Red);
 	text.setPosition(sf::Vector2f(x, y));
 }
 
-void NewGameButton::onClick()
+void ExitGameButton::onClick()
 {
-	GameController processor(0);
-	processor.start();
+	std::cout << "Exitting..." << std::endl;
+	exit(0);
 }
 
-bool NewGameButton::isClicked(sf::Vector2i point)
+bool ExitGameButton::isClicked(sf::Vector2i point)
 {
 	return text.getGlobalBounds().contains(sf::Vector2f((float)point.x, (float)point.y));
 }
