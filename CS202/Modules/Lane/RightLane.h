@@ -50,6 +50,7 @@ void RightLane::update()
 			vehicles.front()->setVelocity(velocity);
 		}
 		if (vehicles.back()->getSprite()->getPosition().x + vehicles.back()->getSprite()->getGlobalBounds().width < 0) {
+			delete vehicles.back();
 			vehicles.pop_back();
 		}
 	}

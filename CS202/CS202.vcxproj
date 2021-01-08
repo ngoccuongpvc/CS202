@@ -88,12 +88,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>F:\Study\In_uni\Year 2\Semester 1\CS202\Final_Project\CS202\sfml\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\admin\source\repos\CS202\sfml\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>F:\Study\In_uni\Year 2\Semester 1\CS202\Final_Project\CS202\sfml\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\admin\source\repos\CS202\sfml\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-system-d.lib;sfml-graphics-d.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-window-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -105,14 +105,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>F:\Study\In_uni\Year 2\Semester 1\CS202\Final_Project\CS202\sfml\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\admin\source\repos\CS202\sfml\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>F:\Study\In_uni\Year 2\Semester 1\CS202\Final_Project\CS202\sfml\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\admin\source\repos\CS202\sfml\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-system.lib;sfml-graphics.lib;sfml-audio.lib;sfml-network.lib;sfml-window.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -152,6 +152,9 @@
     <ClInclude Include="Controllers\MainMenu.h" />
     <ClInclude Include="Controllers\MenuInterface.h" />
     <ClInclude Include="Factory.h" />
+    <ClInclude Include="Modules\Lane\TrafficLight.h" />
+    <ClInclude Include="Modules\Vehicle\AudioLoader.h" />
+    <ClInclude Include="Modules\Vehicle\TextureLoader.h" />
     <ClInclude Include="Modules\Button\ButtonInterface.h" />
     <ClInclude Include="Modules\Button\ExitButton.h" />
     <ClInclude Include="Modules\Button\LoadGameButton.h" />
@@ -172,6 +175,38 @@
     <ClInclude Include="Modules\Vehicle\Truck.h" />
     <ClInclude Include="Modules\Vehicle\VehicleInterface.h" />
     <ClInclude Include="Utility\RandomMachine.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\car.png" />
+    <Image Include="Images\car2.png" />
+    <Image Include="Images\dinosaur.png" />
+    <Image Include="Images\dog.png" />
+    <Image Include="Images\Frame1.png" />
+    <Image Include="Images\Frame2.png" />
+    <Image Include="Images\Frame3.png" />
+    <Image Include="Images\Frame4.png" />
+    <Image Include="Images\Frame5.png" />
+    <Image Include="Images\Frame6.png" />
+    <Image Include="Images\Frame7.png" />
+    <Image Include="Images\Frame8.png" />
+    <Image Include="Images\Frame9.png" />
+    <Image Include="Images\pavement.jpg" />
+    <Image Include="Images\plode frame.jpg" />
+    <Image Include="Images\police_car.png" />
+    <Image Include="Images\road.jpg" />
+    <Image Include="Images\stickman.png" />
+    <Image Include="Images\tree.png" />
+    <Image Include="Images\truck.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Audio\car_sound.mp3" />
+    <Media Include="Audio\car_sound.wav" />
+    <Media Include="Audio\dinosaur_sound.mp3" />
+    <Media Include="Audio\dinosaur_sound.wav" />
+    <Media Include="Audio\dog_sound.mp3" />
+    <Media Include="Audio\dog_sound.wav" />
+    <Media Include="Audio\truck_sound.mp3" />
+    <Media Include="Audio\truck_sound.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

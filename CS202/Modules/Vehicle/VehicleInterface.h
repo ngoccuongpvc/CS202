@@ -3,6 +3,8 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include "TextureLoader.h"
+#include "AudioLoader.h"
 
 class VehicleInterface
 {
@@ -12,8 +14,6 @@ protected:
 	sf::Texture* texture;
 	sf::Sprite* sprite;
 	sf::Vector2f velocity;
-	sf::SoundBuffer* buffer;
-	sf::Sound* sound;
 public:
 	VehicleInterface();
 	virtual sf::Sprite* getSprite();
@@ -26,8 +26,6 @@ VehicleInterface::VehicleInterface()
 {
 	this->texture = new sf::Texture();
 	this->sprite = new sf::Sprite();
-	this->buffer = new sf::SoundBuffer();
-	this->sound = new sf::Sound();
 	velocity = sf::Vector2f(1.f, 0.f);
 }
 sf::Sprite* VehicleInterface::getSprite()
@@ -36,7 +34,8 @@ sf::Sprite* VehicleInterface::getSprite()
 }
 
 sf::Sound* VehicleInterface::getSound() {
-	return this->sound;
+	//return this->sound;
+	return AudioLoader::loadSound(soundfile);
 }
 
 void VehicleInterface::move()

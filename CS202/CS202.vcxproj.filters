@@ -104,5 +104,94 @@
     <ClInclude Include="Modules\CollisionAnimation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Modules\Vehicle\TextureLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\Vehicle\AudioLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\Lane\TrafficLight.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\car.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Images\car2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Images\dinosaur.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Images\dog.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Images\Frame1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Images\Frame2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Images\Frame3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Images\Frame4.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Images\Frame5.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Images\Frame6.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Images\Frame7.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Images\Frame8.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Images\Frame9.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Images\pavement.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Images\plode frame.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Images\police_car.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Images\road.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Images\stickman.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Images\tree.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Images\truck.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Audio\car_sound.mp3" />
+    <Media Include="Audio\car_sound.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Audio\dinosaur_sound.mp3" />
+    <Media Include="Audio\dinosaur_sound.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Audio\dog_sound.mp3" />
+    <Media Include="Audio\dog_sound.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Audio\truck_sound.mp3" />
+    <Media Include="Audio\truck_sound.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
   </ItemGroup>
 </Project>

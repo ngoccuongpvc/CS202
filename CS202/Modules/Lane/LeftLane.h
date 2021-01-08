@@ -51,6 +51,7 @@ void LeftLane::update()
 			vehicles.front()->setVelocity(velocity);
 		}
 		if (vehicles.back()->getSprite()->getPosition().x > 1280) {
+			delete vehicles.back();
 			vehicles.pop_back();
 		}
 	}
