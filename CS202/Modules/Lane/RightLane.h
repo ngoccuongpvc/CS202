@@ -44,7 +44,7 @@ void RightLane::update(int *level)
 		float firstPos = vehicles.front()->getSprite()->getPosition().x;
 		if (firstPos < 1280) {
 			vehicles.push_front(CarFactory::getRandom());
-			float pos = firstPos + vehicles.front()->getSprite()->getGlobalBounds().width + randomDist(level);
+			float pos = firstPos + vehicles.front()->getSprite()->getGlobalBounds().width + randomDist(*level);
 			vehicles.front()->getSprite()->setPosition(pos, x);
 			vehicles.front()->setVelocity(velocity);
 		}

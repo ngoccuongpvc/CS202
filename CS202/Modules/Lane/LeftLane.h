@@ -46,7 +46,7 @@ void LeftLane::update(int *level)
 		if (firstPos > 0) {
 			vehicles.push_front(CarFactory::getRandom());
 			vehicles.front()->getSprite()->setScale(-1.f, 1.f);
-			float pos = firstPos - vehicles.front()->getSprite()->getGlobalBounds().width - randomDist(level);
+			float pos = firstPos - vehicles.front()->getSprite()->getGlobalBounds().width - randomDist(*level);
 			vehicles.front()->getSprite()->setPosition(pos, x);
 			vehicles.front()->setVelocity(velocity);
 		}
