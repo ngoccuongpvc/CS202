@@ -16,7 +16,7 @@ NewGameButton::NewGameButton(float x, float y) {
 	text.setFont(*Factory::getFont());
 	text.setString("Start New Game");
 	text.setCharacterSize(24);
-	text.setFillColor(sf::Color::Red);
+	text.setFillColor(sf::Color::White);
 	text.setPosition(sf::Vector2f(x, y));
 }
 

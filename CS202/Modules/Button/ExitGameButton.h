@@ -10,12 +10,11 @@ public:
 };
 
 ExitGameButton::ExitGameButton(float x, float y) {
-	//rec.setSize(sf::Vector2f(width, height));
 
 	text.setFont(*Factory::getFont());
 	text.setString("Exit");
 	text.setCharacterSize(24);
-	text.setFillColor(sf::Color::Red);
+	text.setFillColor(sf::Color::White);
 	text.setPosition(sf::Vector2f(x, y));
 }
 

@@ -2,6 +2,7 @@
 
 #include "ButtonInterface.h"
 #include <fstream>
+#include <string>
 
 class SaveGameButton : public ButtonInterface
 {
@@ -9,31 +10,32 @@ private:
 	int level;
 public:
 	SaveGameButton(float width, float height, int level);
-	void onClick();
+	void onClickPause(bool& check);
 	bool isClicked(sf::Vector2i point);
 };
 
-SaveGameButton::SaveGameButton(float width, float height, int level) 
+SaveGameButton::SaveGameButton(float x, float y, int level) 
 {
+	std::string str = "Save Game (lv " + std::to_string(level + 1) + ")";
 	this->level = level;
-	rec.setSize(sf::Vector2f(width, height));
-
 	text.setFont(*Factory::getFont());
-	text.setString("Save Game");
+	text.setString(str);
 	text.setCharacterSize(24);
-	text.setFillColor(sf::Color::Red);
+	text.setFillColor(sf::Color::White);
+	text.setPosition(sf::Vector2f(x, y));
 }
 
-void SaveGameButton::onClick()
+void SaveGameButton::onClickPause(bool& check)
 {
-	std::cout << "Save Game" << std::endl;
+	std::cout << "Save Game " << level << std::endl;
 	std::ofstream fout;
 	fout.open("SaveGame.txt");
 	fout << level;
 	fout.close();
+	check = true;
 }
 
 bool SaveGameButton::isClicked(sf::Vector2i point)
 {
-	return rec.getGlobalBounds().contains(sf::Vector2f((float)point.x, (float)point.y));
+	return text.getGlobalBounds().contains(sf::Vector2f((float)point.x, (float)point.y));
 }

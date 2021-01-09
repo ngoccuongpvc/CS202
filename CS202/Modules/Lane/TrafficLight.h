@@ -63,7 +63,7 @@ void TrafficLight::updateLight()
 {
     int cur_time = clk.getElapsedTime().asMilliseconds();
     if (cur_time > total_time) clk.restart(); 
-    
+
     cur_time += start_time;
     cur_time %= total_time;
     if (is_red) 

@@ -2,6 +2,7 @@
 
 #include "../../Controllers/GameController.h"
 #include "ButtonInterface.h"
+#include <fstream>
 class LoadGameButton : public ButtonInterface
 {
 public:
@@ -16,13 +17,20 @@ LoadGameButton::LoadGameButton(float x, float y) {
 	text.setFont(*Factory::getFont());
 	text.setString("Load Game");
 	text.setCharacterSize(24);
-	text.setFillColor(sf::Color::Red);
+	text.setFillColor(sf::Color::White);
 	text.setPosition(sf::Vector2f(x, y));
 }
 
 void LoadGameButton::onClick()
 {
-	std::cout << "sadfsadf";
+	int level;
+	std::ifstream fin;
+	fin.open("SaveGame.txt");
+	fin>>level;
+	fin.close();
+
+	GameController processor(level);
+	processor.start();
 }
 
 bool LoadGameButton::isClicked(sf::Vector2i point)

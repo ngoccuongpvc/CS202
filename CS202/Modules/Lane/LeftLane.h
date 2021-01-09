@@ -21,7 +21,7 @@ LeftLane::LeftLane(int x) : LaneInterface(x) {
 void LeftLane::initialize(int level)
 {
 	//srand((int)time(NULL));
-	float speed = randomSpeed(level); 
+	float speed = randomSpeed(level);
 	velocity = sf::Vector2f(speed, 0);
 
 	light.initialize(x, true);
@@ -31,6 +31,7 @@ void LeftLane::initialize(int level)
 
 	while (lastPos < 1280) {
 		vehicle = CarFactory::getRandom();
+		vehicle->getSprite()->setScale(-1.f, 1.f);
 		vehicle->setVelocity(velocity);
 		lastPos += (vehicles.empty() ? 0 : vehicles.back()->getSprite()->getGlobalBounds().width) + randomDist(level);
 		vehicle->getSprite()->setPosition(sf::Vector2f(lastPos, x));
@@ -44,7 +45,7 @@ void LeftLane::update(int level)
 		float firstPos = vehicles.front()->getSprite()->getPosition().x;
 		if (firstPos > 0) {
 			vehicles.push_front(CarFactory::getRandom());
-
+			vehicles.front()->getSprite()->setScale(-1.f, 1.f);
 			float pos = firstPos - vehicles.front()->getSprite()->getGlobalBounds().width - randomDist(level);
 			vehicles.front()->getSprite()->setPosition(pos, x);
 			vehicles.front()->setVelocity(velocity);
