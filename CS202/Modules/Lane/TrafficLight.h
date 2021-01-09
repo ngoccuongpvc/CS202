@@ -8,7 +8,7 @@ class TrafficLight
 {
 private:
     bool is_red;
-    int red_time, total_time; //in millisecond
+    int red_time, total_time, start_time; //in millisecond
     sf::Clock clk;
     const int total_time_rand_limit = 10000,
               total_time_lower_limit = 5000, 
@@ -23,7 +23,7 @@ public:
     TrafficLight();
     void initialize(int x_from_lane, bool is_left);
     void startClock();
-    void updateLight(bool from_init = false);
+    void updateLight();
     void draw();
     bool isRed();
     static sf::Texture* redLight;
@@ -44,10 +44,11 @@ void TrafficLight::initialize(int x_from_lane, bool is_left)
 {
     total_time = total_time_lower_limit + random() % total_time_rand_limit;
     red_time = red_time_lower_limit + random() % (total_time / 2);
+    start_time = red_time -500 + random() % (total_time - red_time);
     is_red = false;
 
     startClock();
-    updateLight(true);
+    updateLight();
     //int width = sprite.getTexture()->getSize().x * sprite.getScale().x;
     int width = sprite.getGlobalBounds().width;
     sprite.setPosition((is_left)? (1280 - width) : (0),  x_from_lane);
@@ -58,13 +59,12 @@ void TrafficLight::startClock()
     clk.restart();
 }
 
-void TrafficLight::updateLight(bool from_init = false)
+void TrafficLight::updateLight()
 {
     int cur_time = clk.getElapsedTime().asMilliseconds();
-    if (cur_time > total_time) clk.restart();
-    if (from_init) 
-        cur_time += red_time -500 + random() % (total_time - red_time);
-
+    if (cur_time > total_time) clk.restart(); 
+    
+    cur_time += start_time;
     cur_time %= total_time;
     if (is_red) 
     {
