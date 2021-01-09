@@ -10,13 +10,15 @@
 #include  "../Modules/CollisionAnimation.h"
 #include "PauseMenu.h"
 #include <string>
-
+#include <SFML/System.hpp>
+#include <functional>
 class GameController
 {
 private:
 	People player;
 	CollisionAnimation colision;
 	std::vector<LaneInterface*> lanes;
+	std::vector<sf::Thread*> vThreads;
 	sf::RectangleShape rect;
 	sf::Text text;
 	int level = 0;
@@ -45,6 +47,10 @@ GameController::GameController(int level)
 		lanes.push_back(new RightLane((i + 1) * 72));
 	}
 	lanes.push_back(new Pavement(9 * 72));
+	for (auto& lane : lanes) {
+		vThreads.push_back(new sf::Thread(std::bind(&LaneInterface::update, lane, &this->level)));
+
+	}
 }
 
 void GameController::start() {
@@ -117,9 +123,15 @@ void GameController::start() {
 		}
 		window->clear();
 		player.move();
-		
+
+		//for (auto& thread : vThreads) {
+		//	thread->launch();
+		//}
+		//for (auto& thread : vThreads) {
+		//	thread->wait();
+		//}
 		for (auto& lane : lanes) {
-			lane->update(level);
+			lane->update(&level);
 			lane->draw();
 		}
 		window->draw(rect);

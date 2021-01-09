@@ -5,7 +5,7 @@ class Pavement : public LaneInterface {
 public:
 	void initialize(int level);
 	Pavement(int x);
-	void update(int level);
+	void update(int *level);
 	void playStreetSound(People& p);
 };
 
@@ -33,5 +33,5 @@ void Pavement::initialize(int level) {
 	}
 }
 void Pavement::playStreetSound(People& p) {}
-void Pavement::update(int level) {
+void Pavement::update(int *level) {
 }

@@ -157,7 +157,10 @@
     <ClInclude Include="Controllers\GameController.h" />
     <ClInclude Include="Controllers\MainMenu.h" />
     <ClInclude Include="Controllers\MenuInterface.h" />
+    <ClInclude Include="Controllers\PauseMenu.h" />
     <ClInclude Include="Factory.h" />
+    <ClInclude Include="Modules\Button\ContinueGameButton.h" />
+    <ClInclude Include="Modules\Button\SaveGameButton.h" />
     <ClInclude Include="Modules\Lane\TrafficLight.h" />
     <ClInclude Include="Modules\Vehicle\AudioLoader.h" />
     <ClInclude Include="Modules\Vehicle\TextureLoader.h" />

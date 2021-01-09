@@ -6,7 +6,7 @@ class RightLane : public LaneInterface
 public:
 	RightLane(int x);
 	void initialize(int level);
-	void update(int level);
+	void update(int *level);
 	void playStreetSound(People& p);
 };
 
@@ -38,14 +38,14 @@ void RightLane::initialize(int level)
 	}
 }
 
-void RightLane::update(int level)
+void RightLane::update(int *level)
 {
 	if (!vehicles.empty()) {
 		float firstPos = vehicles.front()->getSprite()->getPosition().x;
 		if (firstPos < 1280) {
 			vehicles.push_front(CarFactory::getRandom());
 
-			float pos = firstPos + vehicles.front()->getSprite()->getGlobalBounds().width + randomDist(level); 
+			float pos = firstPos + vehicles.front()->getSprite()->getGlobalBounds().width + randomDist(*level); 
 			vehicles.front()->getSprite()->setPosition(pos, x);
 			vehicles.front()->setVelocity(velocity);
 		}
