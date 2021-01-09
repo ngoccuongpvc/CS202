@@ -25,6 +25,7 @@ private:
 public:
 	GameController(int level);
 	void start();
+	void youDied();
 };
 
 GameController::GameController(int level)
@@ -140,6 +141,7 @@ void GameController::start() {
 			lanes[i]->playStreetSound(player);
 			if (lanes[i]->checkCollision(player)) {
 				colision.draw(player.getSprite()->getPosition().x, player.getSprite()->getPosition().y);
+				youDied();
 				return;
 			}
 		}
@@ -152,6 +154,56 @@ void GameController::start() {
 			level++;
 			start(); //nextlevel
 			return;
+		}
+	}
+}
+
+void GameController::youDied()
+{
+	sf::RenderWindow* window = Factory::getRenderWindow();
+
+	sf::RectangleShape rect;
+	rect.setFillColor(sf::Color::Black);
+	rect.setOutlineColor(sf::Color::Red);
+	rect.setOutlineThickness(3);
+	rect.setPosition(sf::Vector2f(495, 290));
+	rect.setSize(sf::Vector2f(230, 150));
+
+	sf::Text text;
+	text.setFont(*Factory::getFont());
+	text.setString(" < YOU DIED >");
+	text.setCharacterSize(24);
+	text.setFillColor(sf::Color::Red);
+	text.setPosition(sf::Vector2f(525, 320));
+
+	sf::Text lv;
+	lv .setFont(*Factory::getFont());
+	lv.setString("   Level: " + std::to_string(level + 1));
+	lv.setCharacterSize(24);
+	lv.setFillColor(sf::Color::Red);
+	lv.setPosition(sf::Vector2f(550, 370));
+	
+	while (window->isOpen()) {
+		sf::Event event;
+		window->draw(rect);
+		window->draw(text);
+		window->draw(lv);
+		window->display();
+		while (window->pollEvent(event)) {
+			switch (event.type)
+			{
+			case sf::Event::Closed:
+				window->close();
+				break;
+			case sf::Event::KeyPressed:
+				return;
+				break;
+			case sf::Event::MouseButtonPressed:
+				return;
+				break;
+			default:
+				break;
+			}
 		}
 	}
 }
